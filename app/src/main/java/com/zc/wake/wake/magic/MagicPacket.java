@@ -83,8 +83,18 @@ public class MagicPacket
 		final InetAddress address = InetAddress.getByName(ip);
 		final DatagramPacket packet = new DatagramPacket(bytes, bytes.length, address, port);
 		final DatagramSocket socket = new DatagramSocket();
-		socket.send(packet);
-		socket.close();
+		new Thread(new Runnable(){
+			@Override
+			public void run() {
+				try {
+					socket.send(packet);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				socket.close();
+			}
+		}).start();
+
 
 		return hex[0]+SEPARATOR+hex[1]+SEPARATOR+hex[2]+SEPARATOR+hex[3]+SEPARATOR+hex[4]+SEPARATOR+hex[5];
 	}
