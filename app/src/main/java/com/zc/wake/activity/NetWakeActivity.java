@@ -38,6 +38,7 @@ public class NetWakeActivity extends Activity implements View.OnLongClickListene
         BarUtils.transparentStatusBar(this);
         BarUtils.setStatusBarLightMode(this,false);
 
+
         baseMacPopup = new BaseMacPopup(this);
 
     }
